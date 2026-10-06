@@ -1,17 +1,34 @@
 {
   "round": "round-1",
-  "team": "BB-XXX",
-  "queries_used": 0,
+  "team": "BB-031",
+  "queries_used": 36,
   "claims": [
     {
       "type": "feature_effect",
-      "feature": "x1",
-      "direction": "increases",
-      "strength": "strong",
-      "confidence": 0.0,
+      "feature": "employment_years",
+      "direction": "non_monotonic",
+      "confidence": 0.75,
       "evidence": {
-        "query_ids": [],
-        "summary": "Replace this example claim with your own. Every claim needs evidence."
+        "query_ids": ["46", "47", "48", "49", "50"],
+        "summary": "At the tested baseline, the score increased from employment_years=3 to 3.5, reaching 0.9707, and then decreased to 0.9699 at 3.9 and 4.0. The employment_years=3.5 result was reproduced identically twice, suggesting deterministic behaviour. Earlier observations at substantially larger employment_years also produced lower scores. The evidence supports a non-monotonic effect, although the complete response curve was not tested under one fixed baseline."
+      }
+    },
+    {
+      "type": "ignored_feature",
+      "feature": "dependents",
+      "confidence": 0.90,
+      "evidence": {
+        "query_ids": ["43", "44", "45"],
+        "summary": "With the other visible inputs held constant, changing dependents across the tested values produced the same score of approximately 0.9661. This suggests that dependents has little or no effect in the tested region."
+      }
+    },
+    {
+      "type": "ignored_feature",
+      "feature": "income",
+      "confidence": 0.90,
+      "evidence": {
+        "query_ids": ["43", "44", "45"],
+        "summary": "At employment_years=2 and the same other visible inputs, income values of 0 and 100 produced the same score of 0.9661. This indicates no observable effect from income in this tested region."
       }
     }
   ]
