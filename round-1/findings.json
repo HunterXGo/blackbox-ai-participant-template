@@ -17,7 +17,7 @@
     {
       "type": "feature_effect",
       "feature": "port",
-      "direction": "varies_by_category",
+      "direction": "non_monotonic",
       "strength": "strong",
       "confidence": 0.95,
       "evidence": {
@@ -39,7 +39,7 @@
     {
       "type": "feature_effect",
       "feature": "container_count",
-      "direction": "weak_increase",
+      "direction": "increases",
       "strength": "weak",
       "confidence": 0.65,
       "evidence": {
