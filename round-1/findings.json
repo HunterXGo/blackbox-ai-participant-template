@@ -1,17 +1,61 @@
 {
   "round": "round-1",
-  "team": "BB-XXX",
-  "queries_used": 0,
+  "team": "BB-031",
+  "queries_used": 50,
   "claims": [
     {
       "type": "feature_effect",
-      "feature": "x1",
+      "feature": "employment_years",
       "direction": "increases",
-      "strength": "strong",
-      "confidence": 0.0,
+      "strength": "weak",
+      "confidence": 0.78,
       "evidence": {
-        "query_ids": [],
-        "summary": "Replace this example claim with your own. Every claim needs evidence."
+        "query_ids": [31, 32],
+        "summary": "Changing employment_years from 1 to 0 reduced the score from 0.9673 to 0.9656 while the other visible inputs remained unchanged."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "dependents",
+      "direction": "no_clear_effect",
+      "strength": "weak",
+      "confidence": 0.92,
+      "evidence": {
+        "query_ids": [34, 35, 36],
+        "summary": "Changing dependents among 5, 0, and 6 produced approximately the same score of 0.9673."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "debt_ratio",
+      "direction": "no_clear_effect",
+      "strength": "weak",
+      "confidence": 0.91,
+      "evidence": {
+        "query_ids": [33, 34, 36],
+        "summary": "Changing debt_ratio between 0, 0.7, and 1 produced little or no observable change around a score of 0.9673."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "employment_years",
+      "direction": "increases",
+      "strength": "weak",
+      "confidence": 0.72,
+      "evidence": {
+        "query_ids": [47, 48, 49, 50],
+        "summary": "Employment_years values of 3.5, 3.9, and 4 produced scores around 0.9699-0.9707, slightly above the approximately 0.9673 baseline."
+      }
+    },
+    {
+      "type": "anomaly",
+      "feature": "unknown",
+      "direction": "nonlinear",
+      "strength": "strong",
+      "confidence": 0.95,
+      "evidence": {
+        "query_ids": [25, 26],
+        "summary": "A sharp transition was observed between query 25 (0.9209 APPROVE) and query 26 (0.0200 DECLINE), indicating a strong nonlinear or interaction effect."
       }
     }
   ]
