@@ -1,17 +1,61 @@
 {
   "round": "round-1",
-  "team": "BB-XXX",
-  "queries_used": 0,
+  "team": "BB-027",
+  "queries_used": 34,
   "claims": [
     {
       "type": "feature_effect",
-      "feature": "x1",
+      "feature": "discrepancy_ratio",
       "direction": "increases",
       "strength": "strong",
-      "confidence": 0.0,
+      "confidence": 0.92,
       "evidence": {
-        "query_ids": [],
-        "summary": "Replace this example claim with your own. Every claim needs evidence."
+        "query_ids": [4, 5, 6],
+        "summary": "Changing discrepancy_ratio from 0.5 to 1 increased the score from approximately 0.35-0.49 to 0.71 and changed the outcome from DECLINE to APPROVE."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "port",
+      "direction": "varies_by_category",
+      "strength": "strong",
+      "confidence": 0.95,
+      "evidence": {
+        "query_ids": [17, 18, 19, 20],
+        "summary": "Changing only the port produced large score differences. Port C produced 0.6430 and DECLINE, while ports B and D produced approximately 0.87-0.89 and APPROVE."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "declared_value",
+      "direction": "decreases",
+      "strength": "medium",
+      "confidence": 0.88,
+      "evidence": {
+        "query_ids": [31, 34],
+        "summary": "Changing declared_value from 100 to 71 increased the score from 0.8972 to 0.9430, a gain of 0.0458, while the interface identified declared_value as the changed field."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "container_count",
+      "direction": "weak_increase",
+      "strength": "weak",
+      "confidence": 0.65,
+      "evidence": {
+        "query_ids": [15, 16],
+        "summary": "Increasing container_count to 100 produced only a small score change around 0.83, suggesting container_count is not a dominant factor in this tested region."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "shipper_years",
+      "direction": "increases",
+      "strength": "weak",
+      "confidence": 0.78,
+      "evidence": {
+        "query_ids": [31],
+        "summary": "Changing shipper_years produced only a +0.0003 score change, indicating a very small effect in the tested region."
       }
     }
   ]
