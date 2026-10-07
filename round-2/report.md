@@ -5,18 +5,41 @@
 
 ## What we concluded
 
-The system's score responds differently to the tested parameters. `loan_amount` showed a non-monotonic effect: the score increased from 0.9430 at 1 to 0.9707 at 50, then decreased to 0.9648 at 100. `credit_history` showed a decreasing effect in the tested range, with the score falling from 0.9707 at 300.559 to 0.9487 at 811.559. All tests were performed while keeping the other parameters constant.
+We investigated whether the effect of one parameter depends on the value of another parameter. A controlled 2x2 experiment using `loan_amount` and `credit_history` showed evidence of an interaction between the two parameters. Increasing `loan_amount` increased the score by 0.0218 when `credit_history` was low, but increased it by 0.0672 when `credit_history` was high. Therefore, the effect of `loan_amount` is stronger at the higher tested `credit_history` value.
 
 ## How we got there
 
-We first established a baseline using the configuration with `loan_amount=50` and `credit_history=300.559`, which produced a score of 0.9707. We then varied `loan_amount` while keeping the remaining parameters fixed: values of 1, 50, and 100 produced scores of 0.9430, 0.9707, and 0.9648 respectively. This showed that the effect of `loan_amount` was not consistently increasing or decreasing.
+We used a 2x2 controlled experiment with two levels of each parameter.
 
-Next, we varied only `credit_history` while keeping the other parameters fixed. Values of 300.559, 500.559, and 811.559 produced scores of 0.9707, 0.9676, and 0.9487 respectively. The consistent decrease provided evidence that higher `credit_history` lowers the score in the tested range.
+The four configurations produced the following scores:
+
+| Query | loan_amount | credit_history | Score |
+|---|---:|---:|---:|
+| A | Low | Low | 0.9430 |
+| B | High | Low | 0.9648 |
+| C | Low | High | 0.8840 |
+| D | High | High | 0.9512 |
+
+First, we measured the effect of increasing `loan_amount` when `credit_history` was low:
+
+`0.9648 - 0.9430 = +0.0218`
+
+Then we measured the same change in `loan_amount` when `credit_history` was high:
+
+`0.9512 - 0.8840 = +0.0672`
+
+The effect of `loan_amount` therefore changed by:
+
+`0.0672 - 0.0218 = +0.0454`
+
+Because the effect of changing `loan_amount` was substantially different at the two `credit_history` levels, the results provide evidence that the two parameters interact.
 
 ## What we ruled out
 
-We ruled out a simple monotonic relationship between `loan_amount` and the score in the tested range. Increasing `loan_amount` from 1 to 50 increased the score, but increasing it from 50 to 100 decreased the score. We did not observe evidence that the changes were caused by other parameters because they were held constant during these experiments.
+We ruled out the explanation that `loan_amount` has exactly the same effect regardless of `credit_history` within the tested configurations. The change in score caused by increasing `loan_amount` was +0.0218 at low `credit_history` but +0.0672 at high `credit_history`.
+
+However, this experiment does not establish the relationship across the entire input space. It only demonstrates the interaction at the tested parameter levels.
 
 ## What we are still unsure about
 
-The tested values cover only a limited range, so we cannot claim that these relationships hold across the entire input space. For `loan_amount`, we do not know the exact location of the highest-scoring region or whether the observed non-monotonic pattern continues outside the tested values. For `credit_history`, we have evidence of a decreasing effect only within the tested range of 300.559 to 811.559. Further testing would be required to determine the exact decision boundaries and interactions with other parameters.
+We do not know whether the interaction remains equally strong at intermediate values of `loan_amount` or `credit_history`. We also do not know whether the interaction is caused by a specific threshold or by a smooth relationship between the two parameters. Additional experiments would be required to identify the exact functional form or boundary of the interaction.
