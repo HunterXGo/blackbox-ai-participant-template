@@ -6,7 +6,7 @@
     {
       "type": "threshold",
       "feature": "credit_history",
-      "threshold": 452.5,
+      "value": 452.5,
       "direction": "increases",
       "confidence": 0.99,
       "evidence": {
@@ -101,11 +101,8 @@
     },
     {
       "type": "failure_region",
-      "features": [
-        "region",
-        "credit_history",
-        "age"
-      ],
+      "feature": "region",
+      "observed": "unstable",
       "confidence": 0.98,
       "evidence": {
         "query_ids": [
@@ -132,7 +129,7 @@
           "R4-69",
           "R4-70"
         ],
-        "summary": "Region A exhibits a concentrated decision boundary. At age=40 under the controlled configuration, credit_history values through 452.0 produce a score of 0.0200 and DECLINE, while 452.5 and higher tested values produce scores around 0.89 and APPROVE. Other Region-A observations with low credit_history also produce DECLINE, demonstrating a concentrated Region-A failure region around the credit_history boundary."
+        "summary": "Region A exhibits a concentrated decision boundary rather than a uniform outcome. At age=40 under the controlled configuration, credit_history values through 452.0 produce a score of 0.0200 and DECLINE, while 452.5 and higher tested values produce scores around 0.89 and APPROVE. Other Region-A observations also show both DECLINE and APPROVE outcomes depending on the feature values."
       }
     }
   ]
