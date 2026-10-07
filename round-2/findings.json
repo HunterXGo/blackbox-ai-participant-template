@@ -1,17 +1,26 @@
 {
   "round": "round-2",
-  "team": "BB-XXX",
-  "queries_used": 0,
+  "team": "BB-031",
+  "queries_used": 5,
   "claims": [
     {
       "type": "feature_effect",
-      "feature": "x1",
-      "direction": "increases",
-      "strength": "strong",
-      "confidence": 0.0,
+      "feature": "loan_amount",
+      "direction": "non_monotonic",
+      "confidence": 0.88,
       "evidence": {
-        "query_ids": [],
-        "summary": "Replace this example claim with your own. Every claim needs evidence."
+        "query_ids": ["R2-1", "R2-2", "R2-3"],
+        "summary": "With all other parameters held constant, the score increased from 0.9430 at loan_amount=1 to 0.9707 at loan_amount=50, then decreased to 0.9648 at loan_amount=100. This indicates a non-monotonic effect in the tested range."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "credit_history",
+      "direction": "decreases",
+      "confidence": 0.91,
+      "evidence": {
+        "query_ids": ["R2-1", "R2-4", "R2-5"],
+        "summary": "With all other parameters held constant, the score decreased from 0.9707 at credit_history=300.559 to 0.9676 at 500.559 and further to 0.9487 at 811.559. This provides consistent evidence that increasing credit_history decreases the score in the tested range."
       }
     }
   ]
