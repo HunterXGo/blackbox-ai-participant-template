@@ -4,23 +4,20 @@
   "queries_used": 5,
   "claims": [
     {
-      "type": "feature_effect",
-      "feature": "loan_amount",
-      "direction": "non_monotonic",
-      "confidence": 0.88,
+      "type": "interaction",
+      "features": [
+        "loan_amount",
+        "credit_history"
+      ],
+      "confidence": 0.9,
       "evidence": {
-        "query_ids": ["R2-1", "R2-2", "R2-3"],
-        "summary": "With all other parameters held constant, the score increased from 0.9430 at loan_amount=1 to 0.9707 at loan_amount=50, then decreased to 0.9648 at loan_amount=100. This indicates a non-monotonic effect in the tested range."
-      }
-    },
-    {
-      "type": "feature_effect",
-      "feature": "credit_history",
-      "direction": "decreases",
-      "confidence": 0.91,
-      "evidence": {
-        "query_ids": ["R2-1", "R2-4", "R2-5"],
-        "summary": "With all other parameters held constant, the score decreased from 0.9707 at credit_history=300.559 to 0.9676 at 500.559 and further to 0.9487 at 811.559. This provides consistent evidence that increasing credit_history decreases the score in the tested range."
+        "query_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "summary": "A controlled 2x2 experiment showed that the effect of loan_amount depends on credit_history. At low credit_history, increasing loan_amount changed the score from 0.9430 to 0.9648, an increase of 0.0218. At high credit_history, increasing loan_amount changed the score from 0.8840 to 0.9512, an increase of 0.0672. The effect of loan_amount was therefore 0.0454 larger at high credit_history, indicating an interaction between the two parameters."
       }
     }
   ]
