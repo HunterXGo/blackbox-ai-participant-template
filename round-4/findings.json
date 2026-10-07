@@ -1,17 +1,138 @@
 {
   "round": "round-4",
-  "team": "BB-XXX",
-  "queries_used": 0,
+  "team": "BB-031",
+  "queries_used": 70,
   "claims": [
     {
-      "type": "feature_effect",
-      "feature": "x1",
+      "type": "threshold",
+      "feature": "credit_history",
+      "threshold": 452.5,
       "direction": "increases",
-      "strength": "strong",
-      "confidence": 0.0,
+      "confidence": 0.99,
       "evidence": {
-        "query_ids": [],
-        "summary": "Replace this example claim with your own. Every claim needs evidence."
+        "query_ids": [
+          "R4-58",
+          "R4-59",
+          "R4-60",
+          "R4-61",
+          "R4-62",
+          "R4-63",
+          "R4-64",
+          "R4-65",
+          "R4-66",
+          "R4-67",
+          "R4-68",
+          "R4-69",
+          "R4-70"
+        ],
+        "summary": "Under the controlled configuration age=40, debt_ratio=0.7, dependents=5, employment_years=1, income=10, loan_amount=50, num_accounts=17, recent_defaults=5, region=A, credit_history values 350, 400, 425, 450, 451 and 452 produced score 0.0200 and DECLINE. At 452.5, 453, 455, 460, 475, 500 and 600 the system produced scores between 0.8765 and 0.8900 and APPROVE. The observed decision transition therefore lies between credit_history=452.0 and credit_history=452.5."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "age",
+      "direction": "increases",
+      "confidence": 0.98,
+      "evidence": {
+        "query_ids": [
+          "R4-2",
+          "R4-3",
+          "R4-4",
+          "R4-5",
+          "R4-6",
+          "R4-7",
+          "R4-8",
+          "R4-9",
+          "R4-10",
+          "R4-11",
+          "R4-12",
+          "R4-13"
+        ],
+        "summary": "Under a controlled Region C configuration with credit_history=300.559, debt_ratio=0.7, dependents=5, employment_years=1, income=10, loan_amount=50, num_accounts=17 and recent_defaults=5, increasing age from 20 to 72 increased the score from 0.7995 to 0.9655. The tested sequence shows a strong positive relationship between age and score."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "loan_amount",
+      "direction": "non_monotonic",
+      "confidence": 0.94,
+      "evidence": {
+        "query_ids": [
+          "R4-14",
+          "R4-15",
+          "R4-16",
+          "R4-17",
+          "R4-18",
+          "R4-19",
+          "R4-20",
+          "R4-21",
+          "R4-22",
+          "R4-23",
+          "R4-24",
+          "R4-25",
+          "R4-26"
+        ],
+        "summary": "Under a controlled Region C configuration with age=75, credit_history=300.559, debt_ratio=0.7, dependents=5, employment_years=1, income=10, num_accounts=17 and recent_defaults=5, changing loan_amount from 5 through 70 increased the score from 0.9438 toward a local maximum around 50, where the score was 0.9673, followed by small fluctuations. This indicates a non-monotonic relationship over the tested range."
+      }
+    },
+    {
+      "type": "feature_effect",
+      "feature": "credit_history",
+      "direction": "decreases",
+      "confidence": 0.94,
+      "evidence": {
+        "query_ids": [
+          "R4-27",
+          "R4-28",
+          "R4-29",
+          "R4-30",
+          "R4-31",
+          "R4-32",
+          "R4-33",
+          "R4-34",
+          "R4-35",
+          "R4-36",
+          "R4-37",
+          "R4-38",
+          "R4-39"
+        ],
+        "summary": "Under a controlled Region C configuration with age=60, debt_ratio=0.7, dependents=5, employment_years=1, income=10, loan_amount=50, num_accounts=17 and recent_defaults=5, increasing credit_history from 300 to 900 generally decreased the score from 0.9498 to 0.9208, with minor local fluctuations."
+      }
+    },
+    {
+      "type": "failure_region",
+      "features": [
+        "region",
+        "credit_history",
+        "age"
+      ],
+      "confidence": 0.98,
+      "evidence": {
+        "query_ids": [
+          "R4-40",
+          "R4-44",
+          "R4-48",
+          "R4-52",
+          "R4-53",
+          "R4-54",
+          "R4-55",
+          "R4-56",
+          "R4-57",
+          "R4-58",
+          "R4-59",
+          "R4-60",
+          "R4-61",
+          "R4-62",
+          "R4-63",
+          "R4-64",
+          "R4-65",
+          "R4-66",
+          "R4-67",
+          "R4-68",
+          "R4-69",
+          "R4-70"
+        ],
+        "summary": "Region A exhibits a concentrated decision boundary. At age=40 under the controlled configuration, credit_history values through 452.0 produce a score of 0.0200 and DECLINE, while 452.5 and higher tested values produce scores around 0.89 and APPROVE. Other Region-A observations with low credit_history also produce DECLINE, demonstrating a concentrated Region-A failure region around the credit_history boundary."
       }
     }
   ]
